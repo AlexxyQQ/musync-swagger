@@ -33,7 +33,7 @@ paths:
           in: header
           schema:
             type: string
-          example: Apple
+          example: '{{apisecret}}'
       responses:
         '200':
           description: OK
@@ -53,15 +53,15 @@ paths:
             Content-Length:
               schema:
                 type: integer
-                example: '669'
+                example: '644'
             ETag:
               schema:
                 type: string
-                example: W/"29d-aHf4RSk+gEagCylnPRif6xzBJMA"
+                example: W/"284-onFLM100sW9LDydCcDpnMjr9ejc"
             Date:
               schema:
                 type: string
-                example: Sat, 30 Sep 2023 08:44:51 GMT
+                example: Sun, 19 Nov 2023 13:20:07 GMT
             Connection:
               schema:
                 type: string
@@ -78,23 +78,23 @@ paths:
                 success: true
                 data:
                   user:
-                    _id: 6517dfbe345ee8f0da29a9b1
+                    _id: 655a0b6574a5f80df3d24b98
                     username: alexxy
                     email: aayushpandey616@gmail.com
-                    password: >-
-                      $2a$12$12l127hOC/4ZuPaO6fWBU.H6ZHiSNSkgUe1o4r.oyER4JpudpswZu
                     profilePic: https://i.imgur.com/Eyzrkg3.jpeg
-                    verified: false
+                    verified: true
                     type: manual
+                    otp: null
+                    createdAt: '2023-11-19T13:19:33.127Z'
                     __v: 0
                   token: >-
-                    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTdkZmJlMzQ1ZWU4ZjBkYTI5YTliMSIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTY5NjA2MzQ5MSwiZXhwIjoxNjk2NjY4MjkxfQ.9pBxnNrHjxx1uEOhizfABkjnvJFZQryU_3wSrMzCxQQ
+                    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWEwYjY1NzRhNWY4MGRmM2QyNGI5OCIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTcwMDQwMDAwNywiZXhwIjoxNzAxMDA0ODA3fQ.zXIatb4qms8nP9Mo-eEXEuYKUX9f3YegbnMYWf59_Tw
                 message: User logged in successfully!
   /api/users/signup:
     post:
       tags:
         - Public > Auth
-      summary: Register
+      summary: Signup
       requestBody:
         content:
           application/json:
@@ -111,7 +111,7 @@ paths:
           in: header
           schema:
             type: string
-          example: Apple
+          example: '{{apisecret}}'
       responses:
         '200':
           description: OK
@@ -131,15 +131,15 @@ paths:
             Content-Length:
               schema:
                 type: integer
-                example: '316'
+                example: '245'
             ETag:
               schema:
                 type: string
-                example: W/"13c-PouUk+Nw70O48/wDgiytirCl+bQ"
+                example: W/"f5-hYy59r6Wy5tFA7GiRj8yqdTVrxE"
             Date:
               schema:
                 type: string
-                example: Sat, 30 Sep 2023 08:43:42 GMT
+                example: Sun, 19 Nov 2023 13:19:36 GMT
             Connection:
               schema:
                 type: string
@@ -155,28 +155,32 @@ paths:
               example:
                 success: true
                 data:
+                  _id: 655a0b6574a5f80df3d24b98
                   username: alexxy
                   email: aayushpandey616@gmail.com
-                  password: $2a$12$12l127hOC/4ZuPaO6fWBU.H6ZHiSNSkgUe1o4r.oyER4JpudpswZu
                   profilePic: https://i.imgur.com/Eyzrkg3.jpeg
                   verified: false
                   type: manual
-                  _id: 6517dfbe345ee8f0da29a9b1
-                  __v: 0
-                message: User created successfully!
-  /api/users/loginWithToken:
-    get:
+                message: OTP sent to your email please verify!
+  /api/users/otpValidator:
+    post:
       tags:
         - Public > Auth
-      summary: LoginWithToken
-      security:
-        - bearerAuth: []
+      summary: Signup OTP Validator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: aayushpandey616@gmail.com
+                otp: PC85OR
       parameters:
         - name: apisecret
           in: header
           schema:
             type: string
-          example: Apple
+          example: '{{apisecret}}'
       responses:
         '200':
           description: OK
@@ -196,15 +200,15 @@ paths:
             Content-Length:
               schema:
                 type: integer
-                example: '669'
+                example: '55'
             ETag:
               schema:
                 type: string
-                example: W/"29d-aHf4RSk+gEagCylnPRif6xzBJMA"
+                example: W/"37-8OvKtOmvqCGQofXWrYB/ebrYbxs"
             Date:
               schema:
                 type: string
-                example: Sat, 30 Sep 2023 08:45:12 GMT
+                example: Sun, 19 Nov 2023 13:16:58 GMT
             Connection:
               schema:
                 type: string
@@ -219,20 +223,131 @@ paths:
                 type: object
               example:
                 success: true
-                data:
-                  user:
-                    _id: 6517dfbe345ee8f0da29a9b1
-                    username: alexxy
-                    email: aayushpandey616@gmail.com
-                    password: >-
-                      $2a$12$12l127hOC/4ZuPaO6fWBU.H6ZHiSNSkgUe1o4r.oyER4JpudpswZu
-                    profilePic: https://i.imgur.com/Eyzrkg3.jpeg
-                    verified: false
-                    type: manual
-                    __v: 0
-                  token: >-
-                    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTdkZmJlMzQ1ZWU4ZjBkYTI5YTliMSIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTY5NjA2MzQ5MSwiZXhwIjoxNjk2NjY4MjkxfQ.9pBxnNrHjxx1uEOhizfABkjnvJFZQryU_3wSrMzCxQQ
-                message: User logged in successfully!
+                message: OTP verified successfully!
+  /api/users/forgotPasswordOTP:
+    post:
+      tags:
+        - Public > Auth
+      summary: Forgot Passwor OTP Sender
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: aayushpandey616@gmail.com
+      parameters:
+        - name: apisecret
+          in: header
+          schema:
+            type: string
+          example: '{{apisecret}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '52'
+            ETag:
+              schema:
+                type: string
+                example: W/"34-FLuCn87VXEpDvebpV4UZUqbceDI"
+            Date:
+              schema:
+                type: string
+                example: Sun, 19 Nov 2023 13:20:47 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: OTP sent to your email!
+  /api/users/forgotPassword:
+    post:
+      tags:
+        - Public > Auth
+      summary: Forgot Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: aayushpandey616@gmail.com
+                otp: WE78PK
+                newPassword: VerySecretPassword@123
+      parameters:
+        - name: apisecret
+          in: header
+          schema:
+            type: string
+          example: '{{apisecret}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '59'
+            ETag:
+              schema:
+                type: string
+                example: W/"3b-xe1RWVR7zsFcIMt1e6yC73508wY"
+            Date:
+              schema:
+                type: string
+                example: Sun, 19 Nov 2023 13:21:14 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Password updated successfully!
   /api/users/uploadProfilePic:
     post:
       tags:
@@ -254,7 +369,7 @@ paths:
           in: header
           schema:
             type: string
-          example: Apple
+          example: '{{apisecret}}'
       responses:
         '200':
           description: OK
@@ -274,15 +389,15 @@ paths:
             Content-Length:
               schema:
                 type: integer
-                example: '357'
+                example: '332'
             ETag:
               schema:
                 type: string
-                example: W/"165-o8aPx8H17vfZnolCndKisWM24nY"
+                example: W/"14c-Bt/1XG4ZOVxa+8Crj5cdkiq/JoQ"
             Date:
               schema:
                 type: string
-                example: Sat, 30 Sep 2023 08:45:35 GMT
+                example: Sun, 19 Nov 2023 13:20:25 GMT
             Connection:
               schema:
                 type: string
@@ -298,14 +413,15 @@ paths:
               example:
                 success: true
                 data:
-                  _id: 6517dfbe345ee8f0da29a9b1
+                  _id: 655a0b6574a5f80df3d24b98
                   username: alexxy
                   email: aayushpandey616@gmail.com
-                  password: $2a$12$12l127hOC/4ZuPaO6fWBU.H6ZHiSNSkgUe1o4r.oyER4JpudpswZu
                   profilePic: >-
-                    public\uploads\alexxy\profilePic\256108fbfc46b9a5941bd5cd317ef8cb.png
-                  verified: false
+                    public\uploads\alexxy\profilePic\db55d61e1b6c2f47aca75e73c8e6c0b4.jpg
+                  verified: true
                   type: manual
+                  otp: null
+                  createdAt: '2023-11-19T13:19:33.127Z'
                   __v: 0
                 message: File uploaded successfully
   /api/users/deleteUser:
@@ -322,7 +438,7 @@ paths:
           in: header
           schema:
             type: string
-          example: Apple
+          example: '{{apisecret}}'
       responses:
         '200':
           description: OK
@@ -342,15 +458,15 @@ paths:
             Content-Length:
               schema:
                 type: integer
-                example: '42'
+                example: '57'
             ETag:
               schema:
                 type: string
-                example: W/"2a-TkGcC/0+lkh26Mo7bHbw30135PA"
+                example: W/"39-sZPh74kIw8O+sZquuL306iLUX2s"
             Date:
               schema:
                 type: string
-                example: Sat, 30 Sep 2023 08:46:03 GMT
+                example: Sun, 19 Nov 2023 13:14:16 GMT
             Connection:
               schema:
                 type: string
@@ -364,7 +480,77 @@ paths:
               schema:
                 type: object
               example:
+                success: true
                 message: Profile deleted successfully
+  /api/users/loginWithToken:
+    get:
+      tags:
+        - Public > Auth
+      summary: LoginWithToken
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: apisecret
+          in: header
+          schema:
+            type: string
+          example: '{{apisecret}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Vary:
+              schema:
+                type: string
+                example: Origin
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '674'
+            ETag:
+              schema:
+                type: string
+                example: W/"2a2-syC3uTaBVaTBgXFA+G6BvEWi7h4"
+            Date:
+              schema:
+                type: string
+                example: Sun, 19 Nov 2023 13:21:24 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                data:
+                  user:
+                    _id: 655a0b6574a5f80df3d24b98
+                    username: alexxy
+                    email: aayushpandey616@gmail.com
+                    profilePic: >-
+                      public\uploads\alexxy\profilePic\db55d61e1b6c2f47aca75e73c8e6c0b4.jpg
+                    verified: true
+                    type: manual
+                    createdAt: '2023-11-19T13:19:33.127Z'
+                    __v: 0
+                  token: >-
+                    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWEwYTNhNzRhNWY4MGRmM2QyNGI4OSIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTcwMDM5OTkwMCwiZXhwIjoxNzAxMDA0NzAwfQ.0hi09gTcGAL2flsq64QSlFO5cWIxaOvVuzlA3XoT85U
+                message: User logged in successfully!
   /api/music/getAllSongs:
     get:
       tags:
