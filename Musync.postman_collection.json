@@ -63,7 +63,7 @@
 								"header": [
 									{
 										"key": "apisecret",
-										"value": "{{apisecret}}"
+										"value": "Apple"
 									}
 								],
 								"body": {
@@ -217,12 +217,12 @@
 								"header": [
 									{
 										"key": "apisecret",
-										"value": "{{apisecret}}"
+										"value": "Apple"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"confirmPassword\":\"{{password}}\",\n  \"username\":\"alexxy\",\n  \"type\":\"manual\"\n}",
+									"raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"confirm_password\":\"{{password}}\",\n  \"username\":\"alexxy\",\n  \"type\":\"manual\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -346,12 +346,12 @@
 								"header": [
 									{
 										"key": "apisecret",
-										"value": "{{apisecret}}"
+										"value": "Apple"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"aayushpandey616@gmail.com\",\n    \"otp\": \"{{otp}}\"\n}",
+									"raw": "{\n    \"email\": \"aayushpandey616@gmail.com\",\n    \"otp\": \"H76P59\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -466,7 +466,7 @@
 								"header": [
 									{
 										"key": "apisecret",
-										"value": "{{apisecret}}"
+										"value": "Apple"
 									}
 								],
 								"body": {
@@ -586,12 +586,12 @@
 								"header": [
 									{
 										"key": "apisecret",
-										"value": "{{apisecret}}"
+										"value": "Apple"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"{{email}}\",\n    \"otp\": \"{{otp}}\",\n    \"new_password\": \"{{password}}\",\n    \"confirm_new_password\": \"{{password}}\"\n}",
+									"raw": "{\n    \"email\": \"{{email}}\",\n    \"otp\": \"3NDW16\",\n    \"new_password\": \"{{password}}\",\n    \"confirm_new_password\": \"{{password}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -747,7 +747,7 @@
 								"header": [
 									{
 										"key": "apisecret",
-										"value": "{{apisecret}}"
+										"value": "Apple"
 									}
 								],
 								"body": {
@@ -755,8 +755,8 @@
 									"formdata": [
 										{
 											"key": "profile_pic",
-											"value": "",
-											"type": "text"
+											"type": "file",
+											"src": "/home/alexxy/Downloads/Property 1=Dark.png"
 										}
 									]
 								},
@@ -909,7 +909,7 @@
 								"header": [
 									{
 										"key": "apisecret",
-										"value": "{{apisecret}}"
+										"value": "Apple"
 									}
 								],
 								"url": {
@@ -1010,7 +1010,7 @@
 								"header": [
 									{
 										"key": "apisecret",
-										"value": "{{apisecret}}",
+										"value": "Apple",
 										"type": "text"
 									}
 								],
@@ -1085,7 +1085,7 @@
 								"header": [
 									{
 										"key": "apisecret",
-										"value": "{{apisecret}}"
+										"value": "Apple"
 									}
 								],
 								"url": {
