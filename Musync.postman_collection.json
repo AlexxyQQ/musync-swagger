@@ -1,1869 +1,2083 @@
 {
-  "info": {
-    "_postman_id": "bf65fbcb-92f2-4822-ad11-5ca24f374d42",
-    "name": "Musync",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "22914361"
-  },
-  "item": [
-    {
-      "name": "Public",
-      "item": [
-        {
-          "name": "Auth",
-          "item": [
-            {
-              "name": "Login",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 400\", function () {",
-                      "    pm.expect(pm.response.code).to.equal(400);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the required fields - success and message\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.success).to.exist.and.to.be.a('boolean');",
-                      "    pm.expect(responseData.message).to.exist.and.to.be.a('string');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Success field is a boolean value\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.success).to.be.a('boolean');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Message field is a non-empty string\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "",
-                      "  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response time is less than 200ms\", function () {",
-                      "  pm.expect(pm.response.responseTime).to.be.below(200);",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "{{apisecret}}"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"aayushpandey616@gmail.com\",\n  \"password\": \"VerySecretPassword@123\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:3001/api/users/login",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "users", "login"]
-                }
-              },
-              "response": [
-                {
-                  "name": "Login",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "apisecret",
-                        "value": "{{apisecret}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"email\": \"aayushpandey616@gmail.com\",\n  \"password\": \"VerySecretPassword@123\"\n}",
-                      "options": {
-                        "raw": {
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "http://localhost:3001/api/users/login",
-                      "protocol": "http",
-                      "host": ["localhost"],
-                      "port": "3001",
-                      "path": ["api", "users", "login"]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "X-Powered-By",
-                      "value": "Express"
-                    },
-                    {
-                      "key": "Vary",
-                      "value": "Origin"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "644"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"284-onFLM100sW9LDydCcDpnMjr9ejc\""
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Sun, 19 Nov 2023 13:20:07 GMT"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Keep-Alive",
-                      "value": "timeout=5"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"_id\": \"655a0b6574a5f80df3d24b98\",\n            \"username\": \"alexxy\",\n            \"email\": \"aayushpandey616@gmail.com\",\n            \"profilePic\": \"https://i.imgur.com/Eyzrkg3.jpeg\",\n            \"verified\": true,\n            \"type\": \"manual\",\n            \"otp\": null,\n            \"createdAt\": \"2023-11-19T13:19:33.127Z\",\n            \"__v\": 0\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWEwYjY1NzRhNWY4MGRmM2QyNGI5OCIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTcwMDQwMDAwNywiZXhwIjoxNzAxMDA0ODA3fQ.zXIatb4qms8nP9Mo-eEXEuYKUX9f3YegbnMYWf59_Tw\"\n    },\n    \"message\": \"User logged in successfully!\"\n}"
-                }
-              ]
-            },
-            {
-              "name": "Signup",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 200\", function () {",
-                      "  pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Verify that the 'success' field is true\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.success).to.be.true;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Verify that the 'message' field is empty\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.message).to.be.empty;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Validate that all fields are present in the 'data' object\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.data).to.exist;",
-                      "    pm.expect(responseData.data).to.be.an('object');",
-                      "    ",
-                      "    const expectedFields = [\"username\", \"email\", \"password\", \"profilePic\", \"verified\", \"type\", \"_id\", \"__v\"];",
-                      "    ",
-                      "    expectedFields.forEach(function(field) {",
-                      "        pm.expect(responseData.data).to.have.property(field);",
-                      "    });",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "{{apisecret}}"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"aayushpandey616@gmail.com\",\n  \"password\": \"VerySecretPassword@123\",\n  \"confirmPassword\":\"VerySecretPassword@123\",\n  \"username\":\"alexxy\",\n  \"type\":\"manual\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:3001/api/users/signup",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "users", "signup"]
-                }
-              },
-              "response": [
-                {
-                  "name": "Signup",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "apisecret",
-                        "value": "{{apisecret}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"email\": \"aayushpandey616@gmail.com\",\n  \"password\": \"VerySecretPassword@123\",\n  \"confirmPassword\":\"VerySecretPassword@123\",\n  \"username\":\"alexxy\",\n  \"type\":\"manual\"\n}",
-                      "options": {
-                        "raw": {
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "http://localhost:3001/api/users/signup",
-                      "protocol": "http",
-                      "host": ["localhost"],
-                      "port": "3001",
-                      "path": ["api", "users", "signup"]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "X-Powered-By",
-                      "value": "Express"
-                    },
-                    {
-                      "key": "Vary",
-                      "value": "Origin"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "245"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"f5-hYy59r6Wy5tFA7GiRj8yqdTVrxE\""
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Sun, 19 Nov 2023 13:19:36 GMT"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Keep-Alive",
-                      "value": "timeout=5"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"success\": true,\n    \"data\": {\n        \"_id\": \"655a0b6574a5f80df3d24b98\",\n        \"username\": \"alexxy\",\n        \"email\": \"aayushpandey616@gmail.com\",\n        \"profilePic\": \"https://i.imgur.com/Eyzrkg3.jpeg\",\n        \"verified\": false,\n        \"type\": \"manual\"\n    },\n    \"message\": \"OTP sent to your email please verify!\"\n}"
-                }
-              ]
-            },
-            {
-              "name": "Signup OTP Validator",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [""],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "{{apisecret}}"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"aayushpandey616@gmail.com\",\n  \"otp\": \"PC85OR\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:3001/api/users/otpValidator",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "users", "otpValidator"]
-                }
-              },
-              "response": [
-                {
-                  "name": "Signup OTP Validator",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "apisecret",
-                        "value": "{{apisecret}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"email\": \"aayushpandey616@gmail.com\",\n  \"otp\": \"I9F3NU\"\n}",
-                      "options": {
-                        "raw": {
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "http://localhost:3001/api/users/otpValidator",
-                      "protocol": "http",
-                      "host": ["localhost"],
-                      "port": "3001",
-                      "path": ["api", "users", "otpValidator"]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "X-Powered-By",
-                      "value": "Express"
-                    },
-                    {
-                      "key": "Vary",
-                      "value": "Origin"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "55"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"37-8OvKtOmvqCGQofXWrYB/ebrYbxs\""
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Sun, 19 Nov 2023 13:16:58 GMT"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Keep-Alive",
-                      "value": "timeout=5"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"success\": true,\n    \"message\": \"OTP verified successfully!\"\n}"
-                }
-              ]
-            },
-            {
-              "name": "Forgot Passwor OTP Sender",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [""],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "{{apisecret}}"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"aayushpandey616@gmail.com\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:3001/api/users/forgotPasswordOTP",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "users", "forgotPasswordOTP"]
-                }
-              },
-              "response": [
-                {
-                  "name": "Forgot Passwor OTP Sender",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "apisecret",
-                        "value": "{{apisecret}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"email\": \"aayushpandey616@gmail.com\"\n}",
-                      "options": {
-                        "raw": {
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "http://localhost:3001/api/users/forgotPasswordOTP",
-                      "protocol": "http",
-                      "host": ["localhost"],
-                      "port": "3001",
-                      "path": ["api", "users", "forgotPasswordOTP"]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "X-Powered-By",
-                      "value": "Express"
-                    },
-                    {
-                      "key": "Vary",
-                      "value": "Origin"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "52"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"34-FLuCn87VXEpDvebpV4UZUqbceDI\""
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Sun, 19 Nov 2023 13:20:47 GMT"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Keep-Alive",
-                      "value": "timeout=5"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"success\": true,\n    \"message\": \"OTP sent to your email!\"\n}"
-                }
-              ]
-            },
-            {
-              "name": "Forgot Password",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [""],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "{{apisecret}}"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"aayushpandey616@gmail.com\",\n  \"otp\": \"WE78PK\",\n  \"newPassword\": \"VerySecretPassword@123\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:3001/api/users/forgotPassword",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "users", "forgotPassword"]
-                }
-              },
-              "response": [
-                {
-                  "name": "Forgot Password",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "apisecret",
-                        "value": "{{apisecret}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\n  \"email\": \"aayushpandey616@gmail.com\",\n  \"otp\": \"WE78PK\",\n  \"newPassword\": \"VerySecretPassword@123\"\n}",
-                      "options": {
-                        "raw": {
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "http://localhost:3001/api/users/forgotPassword",
-                      "protocol": "http",
-                      "host": ["localhost"],
-                      "port": "3001",
-                      "path": ["api", "users", "forgotPassword"]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "X-Powered-By",
-                      "value": "Express"
-                    },
-                    {
-                      "key": "Vary",
-                      "value": "Origin"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "59"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"3b-xe1RWVR7zsFcIMt1e6yC73508wY\""
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Sun, 19 Nov 2023 13:21:14 GMT"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Keep-Alive",
-                      "value": "timeout=5"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"success\": true,\n    \"message\": \"Password updated successfully!\"\n}"
-                }
-              ]
-            },
-            {
-              "name": "Upload Profile Pic",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 401\", function () {",
-                      "  pm.expect(pm.response.code).to.equal(401);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the required fields - success and message\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.success).to.exist;",
-                      "    pm.expect(responseData.message).to.exist;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"The success field is a boolean value\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "    ",
-                      "  pm.expect(responseData.success).to.be.a('boolean');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"The 'message' field is a non-empty string\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "  ",
-                      "  pm.expect(responseData.message).to.be.a('string');",
-                      "  pm.expect(responseData.message).to.not.be.empty;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Validate that the response body is not empty\", function () {",
-                      "    pm.expect(pm.response.text()).to.not.be.empty;",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "{{Token}}",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "{{apisecret}}"
-                  }
-                ],
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "key": "profilePic",
-                      "value": "",
-                      "type": "default",
-                      "disabled": true
-                    },
-                    {
-                      "key": "profilePic",
-                      "type": "file",
-                      "src": "/C:/Users/aayus/OneDrive/Projects/Pictures/IMG_20220813_083857.jpg"
-                    }
-                  ]
-                },
-                "url": {
-                  "raw": "http://localhost:3001/api/users/uploadProfilePic",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "users", "uploadProfilePic"]
-                }
-              },
-              "response": [
-                {
-                  "name": "Upload Profile Pic",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "apisecret",
-                        "value": "{{apisecret}}"
-                      }
-                    ],
-                    "body": {
-                      "mode": "formdata",
-                      "formdata": [
-                        {
-                          "key": "profilePic",
-                          "value": "",
-                          "type": "default",
-                          "disabled": true
-                        },
-                        {
-                          "key": "profilePic",
-                          "type": "file",
-                          "src": "/C:/Users/aayus/OneDrive/Projects/Pictures/IMG_20220813_083857.jpg"
-                        }
-                      ]
-                    },
-                    "url": {
-                      "raw": "http://localhost:3001/api/users/uploadProfilePic",
-                      "protocol": "http",
-                      "host": ["localhost"],
-                      "port": "3001",
-                      "path": ["api", "users", "uploadProfilePic"]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "X-Powered-By",
-                      "value": "Express"
-                    },
-                    {
-                      "key": "Vary",
-                      "value": "Origin"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "332"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"14c-Bt/1XG4ZOVxa+8Crj5cdkiq/JoQ\""
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Sun, 19 Nov 2023 13:20:25 GMT"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Keep-Alive",
-                      "value": "timeout=5"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"success\": true,\n    \"data\": {\n        \"_id\": \"655a0b6574a5f80df3d24b98\",\n        \"username\": \"alexxy\",\n        \"email\": \"aayushpandey616@gmail.com\",\n        \"profilePic\": \"public\\\\uploads\\\\alexxy\\\\profilePic\\\\db55d61e1b6c2f47aca75e73c8e6c0b4.jpg\",\n        \"verified\": true,\n        \"type\": \"manual\",\n        \"otp\": null,\n        \"createdAt\": \"2023-11-19T13:19:33.127Z\",\n        \"__v\": 0\n    },\n    \"message\": \"File uploaded successfully\"\n}"
-                }
-              ]
-            },
-            {
-              "name": "Delete User",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 401\", function () {",
-                      "  pm.expect(pm.response.code).to.equal(401);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the 'success' field\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData).to.have.property(\"success\");",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"The success field is a boolean value\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.success).to.be.a('boolean');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the 'message' field\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.message).to.exist;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"The message field is a non-empty string\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "",
-                      "  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "{{Token}}",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "{{apisecret}}"
-                  }
-                ],
-                "url": {
-                  "raw": "http://localhost:3001/api/users/deleteUser",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "users", "deleteUser"]
-                }
-              },
-              "response": [
-                {
-                  "name": "Delete User",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "apisecret",
-                        "value": "{{apisecret}}"
-                      }
-                    ],
-                    "url": {
-                      "raw": "http://localhost:3001/api/users/deleteUser",
-                      "protocol": "http",
-                      "host": ["localhost"],
-                      "port": "3001",
-                      "path": ["api", "users", "deleteUser"]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "X-Powered-By",
-                      "value": "Express"
-                    },
-                    {
-                      "key": "Vary",
-                      "value": "Origin"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "57"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"39-sZPh74kIw8O+sZquuL306iLUX2s\""
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Sun, 19 Nov 2023 13:14:16 GMT"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Keep-Alive",
-                      "value": "timeout=5"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"success\": true,\n    \"message\": \"Profile deleted successfully\"\n}"
-                }
-              ]
-            },
-            {
-              "name": "LoginWithToken",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 401\", function () {",
-                      "    pm.expect(pm.response.code).to.equal(401);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Verify that the 'success' field is true\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.success).to.be.true;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Verify that the 'message' field is empty\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.message).to.be.empty;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response time is less than 500ms\", function () {",
-                      "  pm.expect(pm.response.responseTime).to.be.below(500);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response body is not empty\", function () {",
-                      "  pm.expect(pm.response.text()).to.not.be.empty;",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "{{Token}}",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "{{apisecret}}"
-                  }
-                ],
-                "url": {
-                  "raw": "http://localhost:3001/api/users/loginWithToken",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "users", "loginWithToken"]
-                }
-              },
-              "response": [
-                {
-                  "name": "LoginWithToken",
-                  "originalRequest": {
-                    "method": "GET",
-                    "header": [
-                      {
-                        "key": "apisecret",
-                        "value": "{{apisecret}}"
-                      }
-                    ],
-                    "url": {
-                      "raw": "http://localhost:3001/api/users/loginWithToken",
-                      "protocol": "http",
-                      "host": ["localhost"],
-                      "port": "3001",
-                      "path": ["api", "users", "loginWithToken"]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "X-Powered-By",
-                      "value": "Express"
-                    },
-                    {
-                      "key": "Vary",
-                      "value": "Origin"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Content-Length",
-                      "value": "674"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"2a2-syC3uTaBVaTBgXFA+G6BvEWi7h4\""
-                    },
-                    {
-                      "key": "Date",
-                      "value": "Sun, 19 Nov 2023 13:21:24 GMT"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Keep-Alive",
-                      "value": "timeout=5"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"_id\": \"655a0b6574a5f80df3d24b98\",\n            \"username\": \"alexxy\",\n            \"email\": \"aayushpandey616@gmail.com\",\n            \"profilePic\": \"public\\\\uploads\\\\alexxy\\\\profilePic\\\\db55d61e1b6c2f47aca75e73c8e6c0b4.jpg\",\n            \"verified\": true,\n            \"type\": \"manual\",\n            \"createdAt\": \"2023-11-19T13:19:33.127Z\",\n            \"__v\": 0\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWEwYTNhNzRhNWY4MGRmM2QyNGI4OSIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTcwMDM5OTkwMCwiZXhwIjoxNzAxMDA0NzAwfQ.0hi09gTcGAL2flsq64QSlFO5cWIxaOvVuzlA3XoT85U\"\n    },\n    \"message\": \"User logged in successfully!\"\n}"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "Songs",
-          "item": [
-            {
-              "name": "Get All Public Songs",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 401\", function () {",
-                      "    pm.expect(pm.response.code).to.equal(401);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the required fields - success and message\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.success).to.exist;",
-                      "    pm.expect(responseData.message).to.exist;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"The 'success' field is a boolean value\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.success).to.be.a('boolean');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Message field is a non-empty string\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "  ",
-                      "  pm.expect(responseData.message).to.be.a('string').and.to.not.be.empty;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Verify that the response does not contain any sensitive information\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "  ",
-                      "  pm.expect(responseData).to.be.an('object');",
-                      "  pm.expect(responseData.success).to.exist.and.to.be.true;",
-                      "  pm.expect(responseData.message).to.exist.and.to.be.empty;",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTAyMWJiZmZhYjYxMTNkODVjZjBlYiIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTY5MDk2MDk4MywiZXhwIjoxNjkxNTY1NzgzfQ.i8zQoLN_eJVBT17uL7JAl-yLL-pl2q2IeqDmkwbu7Fs",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "Apple"
-                  }
-                ],
-                "url": {
-                  "raw": "http://localhost:3001/api/music/getAllSongs",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "music", "getAllSongs"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get User Songs",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 200\", function () {",
-                      "  pm.expect(pm.response.code).to.equal(200);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the 'success' field\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "  ",
-                      "  pm.expect(responseData).to.have.property('success');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"The 'success' field should be a boolean\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.success).to.exist.and.to.be.a('boolean');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the 'data' field\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData).to.have.property('data');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"The 'data' field should be an array\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "  ",
-                      "  pm.expect(responseData.data).to.be.an('array');",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "Apple"
-                  }
-                ],
-                "url": {
-                  "raw": "http://localhost:3001/api/music/getAllPublicSongs",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "music", "getAllPublicSongs"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get User Folders",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 401\", function () {",
-                      "    pm.response.to.have.status(401);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the required fields - success and message\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.success).to.exist;",
-                      "    pm.expect(responseData.message).to.exist;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Success field is a boolean value\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "",
-                      "    pm.expect(responseData.success).to.be.a('boolean');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Message is a non-empty string\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.message).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response time is less than 500ms\", function () {",
-                      "    pm.expect(pm.response.responseTime).to.be.below(500);",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Y2EzY2MyOGM0MTg1ZjlkM2VmM2ExOCIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTY5MDk3NTYwNSwiZXhwIjoxNjkxNTgwNDA1fQ.FQDtMed1M4ef0VWwR_QzZ6Ubnf10TiIiv_ERN9Xv4No",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "Apple"
-                  }
-                ],
-                "url": {
-                  "raw": "http://localhost:3001/api/music/getAllFolders",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "music", "getAllFolders"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get User Folders Songs",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 401\", function () {",
-                      "    pm.response.to.have.status(401);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the required fields\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.success).to.exist;",
-                      "    pm.expect(responseData.message).to.exist;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Success field is a boolean type\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "",
-                      "    pm.expect(responseData.success).to.be.a('boolean');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Message field is a string type\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "",
-                      "  pm.expect(responseData.message).to.be.a('string');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response time is less than 500ms\", function () {",
-                      "    pm.expect(pm.response.responseTime).to.be.below(500);",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Y2EzY2MyOGM0MTg1ZjlkM2VmM2ExOCIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTY5MDk3NTYwNSwiZXhwIjoxNjkxNTgwNDA1fQ.FQDtMed1M4ef0VWwR_QzZ6Ubnf10TiIiv_ERN9Xv4No",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "Apple"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"folderUrl\":\"public/uploads/alexxy/sdk_gphone64_x86_64/Music/Download/Shazam\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:3001/api/music/getFolderSongs",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "music", "getFolderSongs"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get User Folders With Songs ",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 401\", function () {",
-                      "    pm.expect(pm.response.code).to.equal(401);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the required fields - success and message\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.success).to.exist.and.to.be.a('boolean');",
-                      "    pm.expect(responseData.message).to.exist.and.to.be.a('string');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Success field is a boolean value\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.success).to.be.a(\"boolean\");",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Message is a non-empty string\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.message).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response time is less than 500ms\", function () {",
-                      "    pm.expect(pm.response.responseTime).to.be.below(500);",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Y2EzY2MyOGM0MTg1ZjlkM2VmM2ExOCIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTY5MDk3NTYwNSwiZXhwIjoxNjkxNTgwNDA1fQ.FQDtMed1M4ef0VWwR_QzZ6Ubnf10TiIiv_ERN9Xv4No",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "Apple"
-                  }
-                ],
-                "url": {
-                  "raw": "http://localhost:3001/api/music/getAllFolderWithSongs",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "music", "getAllFolderWithSongs"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get User Albums",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 401\", function () {",
-                      "    pm.response.to.have.status(401);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the required fields - success and message\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.success).to.exist;",
-                      "    pm.expect(responseData.message).to.exist;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Validate that the 'success' field is set to true\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.success).to.be.true;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Validate that the 'message' field is a non-empty string\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.message).to.be.a('string').and.to.not.be.empty;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response time is less than 500ms\", function () {",
-                      "  pm.expect(pm.response.responseTime).to.be.below(500);",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Y2EzY2MyOGM0MTg1ZjlkM2VmM2ExOCIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTY5MDk3NTYwNSwiZXhwIjoxNjkxNTgwNDA1fQ.FQDtMed1M4ef0VWwR_QzZ6Ubnf10TiIiv_ERN9Xv4No",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "Apple"
-                  }
-                ],
-                "url": {
-                  "raw": "http://localhost:3001/api/music/getAllAlbums",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "music", "getAllAlbums"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get User Albums With Songs",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 401\", function () {",
-                      "  pm.response.to.have.status(401);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the required fields - success and message\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.success).to.exist;",
-                      "    pm.expect(responseData.message).to.exist;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Success is a boolean value\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "  ",
-                      "  pm.expect(responseData.success).to.be.a('boolean');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Message is a non-empty string\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.message).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response time is less than 200ms\", function () {",
-                      "    pm.expect(pm.response.responseTime).to.be.below(200);",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Y2EzY2MyOGM0MTg1ZjlkM2VmM2ExOCIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTY5MDk3NTYwNSwiZXhwIjoxNjkxNTgwNDA1fQ.FQDtMed1M4ef0VWwR_QzZ6Ubnf10TiIiv_ERN9Xv4No",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "Apple"
-                  }
-                ],
-                "url": {
-                  "raw": "http://localhost:3001/api/music/getAllAlbumWithSongs",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "music", "getAllAlbumWithSongs"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Delete Song",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 200\", function () {",
-                      "  pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Verify that the 'success' field is set to true\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "  ",
-                      "  pm.expect(responseData.success).to.be.true;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Verify that the 'message' field is an empty string\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.message).to.be.a('string').and.to.be.empty;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response time is within an acceptable range\", function () {",
-                      "    pm.expect(pm.response.responseTime).to.be.below(500);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Verify request URL is correct\", function () {",
-                      "    pm.expect(pm.request.url).to.equal(\"http://localhost:3001/api/music/deleteSong\");",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTAyMWJiZmZhYjYxMTNkODVjZjBlYiIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTY5MDk2MDk4MywiZXhwIjoxNjkxNTY1NzgzfQ.i8zQoLN_eJVBT17uL7JAl-yLL-pl2q2IeqDmkwbu7Fs",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "Apple"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"songId\":1000000178\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:3001/api/music/deleteSong",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "music", "deleteSong"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get User Artist With Songs",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 401\", function () {",
-                      "  pm.expect(pm.response.code).to.equal(401);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the 'success' field\", function() {",
-                      "  const responseData = pm.response.json();",
-                      "",
-                      "  pm.expect(responseData).to.have.property(\"success\");",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the 'message' field\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "  ",
-                      "  pm.expect(responseData).to.be.an('object');",
-                      "  pm.expect(responseData.message).to.exist;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"The 'success' field is a boolean\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "  ",
-                      "  pm.expect(responseData.success).to.be.a('boolean');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"The 'message' field is a string\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.message).to.be.a('string');",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Y2EzY2MyOGM0MTg1ZjlkM2VmM2ExOCIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJodHRwczovL2kuaW1ndXIuY29tL0V5enJrZzMuanBlZyIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTY5MDk3NTYwNSwiZXhwIjoxNjkxNTgwNDA1fQ.FQDtMed1M4ef0VWwR_QzZ6Ubnf10TiIiv_ERN9Xv4No",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "Apple"
-                  }
-                ],
-                "url": {
-                  "raw": "http://localhost:3001/api/music/getAllArtistWithSongs",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "music", "getAllArtistWithSongs"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get User Public Songs",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 401\", function () {",
-                      "  pm.expect(pm.response.code).to.equal(401);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has the required fields - success and message\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData).to.be.an('object');",
-                      "    pm.expect(responseData.success).to.exist;",
-                      "    pm.expect(responseData.message).to.exist;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Success field is a boolean value\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.success).to.be.a('boolean');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Message field is a non-empty string\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    ",
-                      "    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response time is less than 500ms\", function () {",
-                      "    pm.expect(pm.response.responseTime).to.be.below(500);",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Y2YxMjE0YzE2MmE3ZTRhN2YwOGIzOSIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsInByb2ZpbGVQaWMiOiJwdWJsaWNcXHVwbG9hZHNcXGFsZXh4eVxccHJvZmlsZVBpY1xcYzc4ODc2YzhjMTlhODZmN2U2NzZhODI3MzMyYzY0YWUucG5nIiwiZW1haWwiOiJhYXl1c2hwYW5kZXk2MTZAZ21haWwuY29tIiwiaWF0IjoxNjkxNTcwMTA2LCJleHAiOjE2OTIxNzQ5MDZ9.OeLuGfcNaj72cQNOHn2IvjoH-qJYG-AJWjOgiVeQ1mw",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "Apple"
-                  }
-                ],
-                "url": {
-                  "raw": "http://localhost:3001/api/music/getUserPublicSongs",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "music", "getUserPublicSongs"]
-                }
-              },
-              "response": []
-            }
-          ]
-        },
-        {
-          "name": "Admin",
-          "item": [
-            {
-              "name": "List of Users",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "pm.test(\"Response status code is 401\", function () {",
-                      "    pm.expect(pm.response.code).to.equal(401);",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response has required fields\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "  ",
-                      "  pm.expect(responseData).to.be.an('object');",
-                      "  pm.expect(responseData.success).to.exist;",
-                      "  pm.expect(responseData.message).to.exist;",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Success field is a boolean\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "  ",
-                      "  pm.expect(responseData.success).to.be.a('boolean');",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Message field is a non-empty string\", function () {",
-                      "  const responseData = pm.response.json();",
-                      "  ",
-                      "  pm.expect(responseData).to.be.an('object');",
-                      "  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
-                      "});",
-                      "",
-                      "",
-                      "pm.test(\"Response time is less than 500ms\", function () {",
-                      "  pm.expect(pm.response.responseTime).to.be.below(500);",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZDQ1NTY4NGE4OThlNzRiY2M0ZjljZSIsInVzZXJuYW1lIjoiYWRtaW4iLCJ0eXBlIjoibWFudWFsIiwicHJvZmlsZVBpYyI6Imh0dHBzOi8vaS5pbWd1ci5jb20vRXl6cmtnMy5qcGVnIiwiZW1haWwiOiJhZG1pbkBtdXN5bmMuY29tIiwiaWF0IjoxNjkxNjM4ODM1LCJleHAiOjE2OTIyNDM2MzV9.GAdrMfrnR09YOqRas-EgX4WwXWGpDl-C8p1vvR8h1RM",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "Apple"
-                  }
-                ],
-                "url": {
-                  "raw": "http://localhost:3001/api/users/getListofUsers",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "users", "getListofUsers"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get User Data",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZDQ1NTY4NGE4OThlNzRiY2M0ZjljZSIsInVzZXJuYW1lIjoiYWRtaW4iLCJ0eXBlIjoibWFudWFsIiwicHJvZmlsZVBpYyI6Imh0dHBzOi8vaS5pbWd1ci5jb20vRXl6cmtnMy5qcGVnIiwiZW1haWwiOiJhZG1pbkBtdXN5bmMuY29tIiwiaWF0IjoxNjkxNjM4ODM1LCJleHAiOjE2OTIyNDM2MzV9.GAdrMfrnR09YOqRas-EgX4WwXWGpDl-C8p1vvR8h1RM",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "apisecret",
-                    "value": "Apple"
-                  }
-                ],
-                "url": {
-                  "raw": "http://localhost:3001/api/users/getUserData",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3001",
-                  "path": ["api", "users", "getUserData"]
-                }
-              },
-              "response": []
-            }
-          ]
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "83d5867e-f2c4-49ae-9207-817386167026",
+		"name": "Musync",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22914361"
+	},
+	"item": [
+		{
+			"name": "Public",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json()",
+											"pm.environment.set('Token', response.data.token)",
+											"",
+											"pm.test(\"Response status code is 400\", function () {",
+											"    pm.expect(pm.response.code).to.equal(400);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields - success and message\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.success).to.exist.and.to.be.a('boolean');",
+											"    pm.expect(responseData.message).to.exist.and.to.be.a('string');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Success field is a boolean value\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.success).to.be.a('boolean');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Message field is a non-empty string\", function () {",
+											"  const responseData = pm.response.json();",
+											"",
+											"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "{{apisecret}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Login",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "apisecret",
+												"value": "{{apisecret}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3001/api/users/login",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"api",
+												"users",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "620"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"26c-QRC2p2+FM/RpMZ/kdz6FikDIWh4\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Dec 2023 14:03:09 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"otp\": null,\n            \"_id\": \"65898a1abe919771a2e56d15\",\n            \"username\": \"alexxy\",\n            \"email\": \"aayushpandey616@gmail.com\",\n            \"profile_pic\": \"public/uploads/alexxy/profile_pic/053689f57209e326afffcd843bf00ce3.png\",\n            \"verified\": true,\n            \"type\": \"manual\",\n            \"created_at\": \"2023-12-25T13:56:42.668Z\",\n            \"__v\": 0\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODk4YTFhYmU5MTk3NzFhMmU1NmQxNSIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTcwMzUxMjk4OSwiZXhwIjoxNzA0MTE3Nzg5fQ.JEHmmOFC30WWDbfdkyYLyL1Sh8tJ9gfRSRE2-aGcHCQ\"\n    },\n    \"message\": \"User logged in successfully!\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Signup",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"",
+											"",
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Verify that the 'success' field is true\", function () {",
+											"    const responseData = pm.response.json();",
+											"",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.success).to.be.true;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Verify that the 'message' field is empty\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.message).to.be.empty;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Validate that all fields are present in the 'data' object\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.data).to.exist;",
+											"    pm.expect(responseData.data).to.be.an('object');",
+											"    ",
+											"    const expectedFields = [\"username\", \"email\", \"password\", \"profilePic\", \"verified\", \"type\", \"_id\", \"__v\"];",
+											"    ",
+											"    expectedFields.forEach(function(field) {",
+											"        pm.expect(responseData.data).to.have.property(field);",
+											"    });",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "{{apisecret}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"confirmPassword\":\"{{password}}\",\n  \"username\":\"alexxy\",\n  \"type\":\"manual\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/users/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"users",
+										"signup"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Signup",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "apisecret",
+												"value": "{{apisecret}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"confirm_password\":\"{{password}}\",\n  \"username\":\"alexxy\",\n  \"type\":\"manual\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3001/api/users/signup",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"api",
+												"users",
+												"signup"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "246"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"f6-7Pep6WYzsck6+AjfH3f6e5UjqjE\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Dec 2023 14:04:34 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"data\": {\n        \"_id\": \"65898beedd24c5f9ff93a56f\",\n        \"username\": \"alexxy\",\n        \"email\": \"aayushpandey616@gmail.com\",\n        \"profile_pic\": \"https://i.imgur.com/Eyzrkg3.jpeg\",\n        \"verified\": false,\n        \"type\": \"manual\"\n    },\n    \"message\": \"OTP sent to your email please verify!\"\n}"
+								}
+							]
+						},
+						{
+							"name": "OTP Validator",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "{{apisecret}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"aayushpandey616@gmail.com\",\n    \"otp\": \"{{otp}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/users/otpValidator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"users",
+										"otpValidator"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OTP Validator",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "apisecret",
+												"value": "{{apisecret}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"aayushpandey616@gmail.com\",\n    \"otp\": \"H76P59\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3001/api/users/otpValidator",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"api",
+												"users",
+												"otpValidator"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "55"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"37-8OvKtOmvqCGQofXWrYB/ebrYbxs\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Dec 2023 14:04:56 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"OTP verified successfully!\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Send Forgot Password OTP",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "{{apisecret}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{email}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/users/sendForgotPasswordOTP",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"users",
+										"sendForgotPasswordOTP"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Send Forgot Password OTP",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "apisecret",
+												"value": "{{apisecret}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"{{email}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3001/api/users/sendForgotPasswordOTP",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"api",
+												"users",
+												"sendForgotPasswordOTP"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "52"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"34-FLuCn87VXEpDvebpV4UZUqbceDI\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Dec 2023 14:03:22 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"OTP sent to your email!\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Change Password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "{{apisecret}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"{{email}}\",\n    \"otp\": \"{{otp}}\",\n    \"new_password\": \"{{password}}\",\n    \"confirm_new_password\": \"{{password}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/users/changePassword",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"users",
+										"changePassword"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Change Password",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "apisecret",
+												"value": "{{apisecret}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"{{email}}\",\n    \"otp\": \"3NDW16\",\n    \"new_password\": \"{{password}}\",\n    \"confirm_new_password\": \"{{password}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3001/api/users/changePassword",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"api",
+												"users",
+												"changePassword"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "59"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3b-xe1RWVR7zsFcIMt1e6yC73508wY\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Dec 2023 14:03:42 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Password updated successfully!\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Upload Profile Pic",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", function () {",
+											"  pm.expect(pm.response.code).to.equal(401);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields - success and message\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.success).to.exist;",
+											"    pm.expect(responseData.message).to.exist;",
+											"});",
+											"",
+											"",
+											"pm.test(\"The success field is a boolean value\", function () {",
+											"  const responseData = pm.response.json();",
+											"    ",
+											"  pm.expect(responseData.success).to.be.a('boolean');",
+											"});",
+											"",
+											"",
+											"pm.test(\"The 'message' field is a non-empty string\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData.message).to.be.a('string');",
+											"  pm.expect(responseData.message).to.not.be.empty;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Validate that the response body is not empty\", function () {",
+											"    pm.expect(pm.response.text()).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "{{apisecret}}"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "profile_pic",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/users/uploadProfilePic",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"users",
+										"uploadProfilePic"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Upload Profile Pic",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "apisecret",
+												"value": "{{apisecret}}"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "profile_pic",
+													"type": "file",
+													"src": "/home/alexxy/Downloads/Property 1=Dark.png"
+												}
+											]
+										},
+										"url": {
+											"raw": "http://localhost:3001/api/users/uploadProfilePic",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"api",
+												"users",
+												"uploadProfilePic"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "331"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"14b-Si8nGXjnQfLZYpCeShkouPYGFjE\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Dec 2023 14:03:49 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"data\": {\n        \"otp\": null,\n        \"_id\": \"65898a1abe919771a2e56d15\",\n        \"username\": \"alexxy\",\n        \"email\": \"aayushpandey616@gmail.com\",\n        \"profile_pic\": \"public/uploads/alexxy/profile_pic/388e514f57fcce41661c40729df0edd9.png\",\n        \"verified\": true,\n        \"type\": \"manual\",\n        \"created_at\": \"2023-12-25T13:56:42.668Z\",\n        \"__v\": 0\n    },\n    \"message\": \"File uploaded successfully\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", function () {",
+											"  pm.expect(pm.response.code).to.equal(401);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the 'success' field\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.have.property(\"success\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"The success field is a boolean value\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.success).to.be.a('boolean');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the 'message' field\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.message).to.exist;",
+											"});",
+											"",
+											"",
+											"pm.test(\"The message field is a non-empty string\", function () {",
+											"  const responseData = pm.response.json();",
+											"",
+											"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "{{apisecret}}"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/users/deleteUser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"users",
+										"deleteUser"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Delete User",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "apisecret",
+												"value": "{{apisecret}}"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:3001/api/users/deleteUser",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"api",
+												"users",
+												"deleteUser"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "57"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"39-sZPh74kIw8O+sZquuL306iLUX2s\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Dec 2023 14:04:25 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Profile deleted successfully\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Resend Verification",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "{{apisecret}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/users/resendVerification",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"users",
+										"resendVerification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LoginWithToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", function () {",
+											"    pm.expect(pm.response.code).to.equal(401);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Verify that the 'success' field is true\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.success).to.be.true;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Verify that the 'message' field is empty\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.message).to.be.empty;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"  pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response body is not empty\", function () {",
+											"  pm.expect(pm.response.text()).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "{{apisecret}}"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/users/loginWithToken",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"users",
+										"loginWithToken"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "LoginWithToken",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "apisecret",
+												"value": "{{apisecret}}"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:3001/api/users/loginWithToken",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"api",
+												"users",
+												"loginWithToken"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "609"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"261-FQKPXiZQzgNRvwjq1R4e5pbzezw\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Dec 2023 14:04:11 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"_id\": \"65898a1abe919771a2e56d15\",\n            \"username\": \"alexxy\",\n            \"email\": \"aayushpandey616@gmail.com\",\n            \"profile_pic\": \"public/uploads/alexxy/profile_pic/388e514f57fcce41661c40729df0edd9.png\",\n            \"verified\": true,\n            \"type\": \"manual\",\n            \"created_at\": \"2023-12-25T13:56:42.668Z\",\n            \"__v\": 0\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODk4YTFhYmU5MTk3NzFhMmU1NmQxNSIsInVzZXJuYW1lIjoiYWxleHh5IiwidHlwZSI6Im1hbnVhbCIsImVtYWlsIjoiYWF5dXNocGFuZGV5NjE2QGdtYWlsLmNvbSIsImlhdCI6MTcwMzUxMjk4OSwiZXhwIjoxNzA0MTE3Nzg5fQ.JEHmmOFC30WWDbfdkyYLyL1Sh8tJ9gfRSRE2-aGcHCQ\"\n    },\n    \"message\": \"User logged in successfully!\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Songs",
+					"item": [
+						{
+							"name": "Get All Public Songs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", function () {",
+											"    pm.expect(pm.response.code).to.equal(401);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields - success and message\", function () {",
+											"    const responseData = pm.response.json();",
+											"",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.success).to.exist;",
+											"    pm.expect(responseData.message).to.exist;",
+											"});",
+											"",
+											"",
+											"pm.test(\"The 'success' field is a boolean value\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.success).to.be.a('boolean');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Message field is a non-empty string\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData.message).to.be.a('string').and.to.not.be.empty;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Verify that the response does not contain any sensitive information\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData).to.be.an('object');",
+											"  pm.expect(responseData.success).to.exist.and.to.be.true;",
+											"  pm.expect(responseData.message).to.exist.and.to.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "Apple"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/music/getAllSongs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"music",
+										"getAllSongs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Songs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.expect(pm.response.code).to.equal(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the 'success' field\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData).to.have.property('success');",
+											"});",
+											"",
+											"",
+											"pm.test(\"The 'success' field should be a boolean\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.success).to.exist.and.to.be.a('boolean');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the 'data' field\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.have.property('data');",
+											"});",
+											"",
+											"",
+											"pm.test(\"The 'data' field should be an array\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData.data).to.be.an('array');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "Apple"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/music/getAllPublicSongs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"music",
+										"getAllPublicSongs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Folders",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields - success and message\", function () {",
+											"    const responseData = pm.response.json();",
+											"",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.success).to.exist;",
+											"    pm.expect(responseData.message).to.exist;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Success field is a boolean value\", function () {",
+											"    const responseData = pm.response.json();",
+											"",
+											"    pm.expect(responseData.success).to.be.a('boolean');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Message is a non-empty string\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.message).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "Apple"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/music/getAllFolders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"music",
+										"getAllFolders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Folders Songs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields\", function () {",
+											"    const responseData = pm.response.json();",
+											"",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.success).to.exist;",
+											"    pm.expect(responseData.message).to.exist;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Success field is a boolean type\", function () {",
+											"    const responseData = pm.response.json();",
+											"",
+											"    pm.expect(responseData.success).to.be.a('boolean');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Message field is a string type\", function () {",
+											"  const responseData = pm.response.json();",
+											"",
+											"  pm.expect(responseData.message).to.be.a('string');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "Apple"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"folderUrl\":\"public/uploads/alexxy/sdk_gphone64_x86_64/Music/Download/Shazam\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/music/getFolderSongs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"music",
+										"getFolderSongs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Folders With Songs ",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", function () {",
+											"    pm.expect(pm.response.code).to.equal(401);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields - success and message\", function () {",
+											"    const responseData = pm.response.json();",
+											"",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.success).to.exist.and.to.be.a('boolean');",
+											"    pm.expect(responseData.message).to.exist.and.to.be.a('string');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Success field is a boolean value\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.success).to.be.a(\"boolean\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Message is a non-empty string\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.message).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "Apple"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/music/getAllFolderWithSongs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"music",
+										"getAllFolderWithSongs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Albums",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields - success and message\", function () {",
+											"    const responseData = pm.response.json();",
+											"",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.success).to.exist;",
+											"    pm.expect(responseData.message).to.exist;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Validate that the 'success' field is set to true\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.success).to.be.true;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Validate that the 'message' field is a non-empty string\", function () {",
+											"    const responseData = pm.response.json();",
+											"",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.message).to.be.a('string').and.to.not.be.empty;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"  pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "Apple"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/music/getAllAlbums",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"music",
+										"getAllAlbums"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Albums With Songs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", function () {",
+											"  pm.response.to.have.status(401);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields - success and message\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.success).to.exist;",
+											"    pm.expect(responseData.message).to.exist;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Success is a boolean value\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData.success).to.be.a('boolean');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Message is a non-empty string\", function () {",
+											"    const responseData = pm.response.json();",
+											"",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.message).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "Apple"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/music/getAllAlbumWithSongs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"music",
+										"getAllAlbumWithSongs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Song",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Verify that the 'success' field is set to true\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData.success).to.be.true;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Verify that the 'message' field is an empty string\", function () {",
+											"    const responseData = pm.response.json();",
+											"",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.message).to.be.a('string').and.to.be.empty;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is within an acceptable range\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Verify request URL is correct\", function () {",
+											"    pm.expect(pm.request.url).to.equal(\"http://localhost:3001/api/music/deleteSong\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "Apple"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"songId\":1000000178\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/music/deleteSong",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"music",
+										"deleteSong"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Artist With Songs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", function () {",
+											"  pm.expect(pm.response.code).to.equal(401);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the 'success' field\", function() {",
+											"  const responseData = pm.response.json();",
+											"",
+											"  pm.expect(responseData).to.have.property(\"success\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the 'message' field\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData).to.be.an('object');",
+											"  pm.expect(responseData.message).to.exist;",
+											"});",
+											"",
+											"",
+											"pm.test(\"The 'success' field is a boolean\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData.success).to.be.a('boolean');",
+											"});",
+											"",
+											"",
+											"pm.test(\"The 'message' field is a string\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.message).to.be.a('string');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "Apple"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/music/getAllArtistWithSongs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"music",
+										"getAllArtistWithSongs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Public Songs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", function () {",
+											"  pm.expect(pm.response.code).to.equal(401);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields - success and message\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('object');",
+											"    pm.expect(responseData.success).to.exist;",
+											"    pm.expect(responseData.message).to.exist;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Success field is a boolean value\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.success).to.be.a('boolean');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Message field is a non-empty string\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "Apple"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/music/getUserPublicSongs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"music",
+										"getUserPublicSongs"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "List of Users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 401\", function () {",
+											"    pm.expect(pm.response.code).to.equal(401);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has required fields\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData).to.be.an('object');",
+											"  pm.expect(responseData.success).to.exist;",
+											"  pm.expect(responseData.message).to.exist;",
+											"});",
+											"",
+											"",
+											"pm.test(\"Success field is a boolean\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData.success).to.be.a('boolean');",
+											"});",
+											"",
+											"",
+											"pm.test(\"Message field is a non-empty string\", function () {",
+											"  const responseData = pm.response.json();",
+											"  ",
+											"  pm.expect(responseData).to.be.an('object');",
+											"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is less than 500ms\", function () {",
+											"  pm.expect(pm.response.responseTime).to.be.below(500);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZDQ1NTY4NGE4OThlNzRiY2M0ZjljZSIsInVzZXJuYW1lIjoiYWRtaW4iLCJ0eXBlIjoibWFudWFsIiwicHJvZmlsZVBpYyI6Imh0dHBzOi8vaS5pbWd1ci5jb20vRXl6cmtnMy5qcGVnIiwiZW1haWwiOiJhZG1pbkBtdXN5bmMuY29tIiwiaWF0IjoxNjkxNjM4ODM1LCJleHAiOjE2OTIyNDM2MzV9.GAdrMfrnR09YOqRas-EgX4WwXWGpDl-C8p1vvR8h1RM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "Apple"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/users/getListofUsers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"users",
+										"getListofUsers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZDQ1NTY4NGE4OThlNzRiY2M0ZjljZSIsInVzZXJuYW1lIjoiYWRtaW4iLCJ0eXBlIjoibWFudWFsIiwicHJvZmlsZVBpYyI6Imh0dHBzOi8vaS5pbWd1ci5jb20vRXl6cmtnMy5qcGVnIiwiZW1haWwiOiJhZG1pbkBtdXN5bmMuY29tIiwiaWF0IjoxNjkxNjM4ODM1LCJleHAiOjE2OTIyNDM2MzV9.GAdrMfrnR09YOqRas-EgX4WwXWGpDl-C8p1vvR8h1RM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "apisecret",
+										"value": "Apple"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3001/api/users/getUserData",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"users",
+										"getUserData"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
 }
